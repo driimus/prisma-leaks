@@ -9,8 +9,8 @@ jobs:
       matrix:
         exposeGc: [true, false]
         tests: [10, 50]
-        schemaSize: ["large", "small"]
-        engine: ["library", "binary"]
+        # schemaSize: ["large", "small"]
+        # engine: ["library", "binary"]
     services:
       postgres:
         image: postgres
@@ -36,9 +36,9 @@ jobs:
 
       - name: setup
         run: |
-          yarn
+          # yarn
           python inflate_tests.py ${{matrix.tests}}
-          yarn prisma db push --schema prisma/${{matrix.schemaSize}}-${{matrix.engine}}.prisma
+          yarn prisma migrate deploy --schema prisma/large-library.prisma
 
       - name: test
         if: ${{matrix.exposeGc == false}}
