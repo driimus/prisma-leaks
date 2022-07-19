@@ -7,6 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        node: [14, 16, 18]
         exposeGc: [true, false]
         tests: [10, 50]
         schemaSize: ["large", "small"]
